@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact Us Page
+{% endblock title %}
+
+{% block base %}
+<h2>Welcome to Contact Us Page....</h2>
+
+<script>
+
+    var element = document.getElementsByTagName("a");
+    for (const ele of element) {
+        ele.classList.remove("active");
+    }
+
+    let el = document.getElementById("contact");;
+    el.classList.add("active")
+
+</script>
+
+{% endblock base %}

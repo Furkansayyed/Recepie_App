@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Your Added Recepies
+{% endblock title %}
+
+{% block base %}
+
+
+<br>
+<h2 align=center>Your Added Recepies 😋</h2>
+<br>
+
+<div class="container">
+  {% if dishes %}
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Sr.No</th>
+        <th scope="col">Recepie Title</th>
+        <th scope="col">Recepie Desciption</th>
+        <th scope="col">Recepie Image</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        
+        
+        
+        {% for dish in dishes %}
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{dish.title}}</td>
+        <td>{{dish.description}}</td>
+        <td> <img src="/media/{{dish.recepie_image}}" alt="{{dish.title}}" height="200" width="260"></td>
+        <td><a href="deleteRecepies/{{dish.id}}/" class="btn btn-danger">Delete</a></td>
+      </tr>
+      {% endfor %}
+
+      {% else %}
+      <h2 align="center">No Recepies Added 😯</h2>
+
+        {% endif %}
+
+  
+    </tbody>
+  </table>
+</div>
+
+
+<script>
+
+  var element = document.getElementsByTagName("a");
+  for (const ele of element) {
+      ele.classList.remove("active");
+  }
+
+  let el = document.getElementById("view");;
+  el.classList.add("active")
+
+</script>
+
+
+{% endblock base %}
