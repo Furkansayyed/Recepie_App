@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 from django.contrib import messages
-
+from django.contrib import messages
 # Create your views here.
 
 def index(request):
@@ -11,11 +11,13 @@ def index(request):
         desc = data['desc']
         recepie_image = request.FILES.get('recepie_image')
         RecpieUpload.objects.create(title=title, description=desc, recepie_image=recepie_image)
+        messages.success(request, "The Recepie is addes Successfully...")
         return redirect('/')
         # print()
     return render(request, 'index.html')
 
 def view_rec(request):
+    messages.info(request, "Hii Thanks for using me ....")
     querySet = RecpieUpload.objects.all()
 
     if request.GET.get('search'):
