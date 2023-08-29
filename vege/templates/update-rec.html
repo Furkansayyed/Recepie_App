@@ -1,6 +1,31 @@
 {% extends 'base.html' %}
 
+{% block title %}Update Recepie Page{% endblock title %}
+
+
+
 {% block base %}
 
-{% endblock base %}
 
+<div class="container mt-5">
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Update Recepie</h2>
+        <hr>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Recepie Title</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" name="mytitle" required value="{{dishes.title}}">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Description</label>
+          <textarea class="form-control" id="exampleInputPassword1" name='desc' required >{{dishes.description}}</textarea>
+        </div>
+        <div class="mb-3">
+          <input type="file" name="recepie_image" id="image">
+        </div>
+        <button type="submit" class="btn btn-success mx-auto">Update Recepie</button>
+      </form>
+</div>
+
+
+{% endblock base %}

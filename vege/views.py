@@ -17,6 +17,10 @@ def index(request):
 
 def view_rec(request):
     querySet = RecpieUpload.objects.all()
+
+    if request.GET.get('search'):
+        querySet = querySet.filter(title__icontains = request.GET.get('search'))
+    
     context = {'dishes': querySet}
     return render(request, 'view_rec.html', context=context)
 
@@ -34,5 +38,20 @@ def delete_rec(request, id):
 def update_red(request, id):
     queryset = RecpieUpload.objects.get(id=id)
     context = {'dishes': queryset}
+
+    if request.method == 'POST':
+        data = request.POST
+        title = data['mytitle']
+        desc = data['desc']
+        recepie_image = request.FILES.get('recepie_image')
+        
+        queryset.title = title
+        queryset.description = desc
+
+        if recepie_image:
+            queryset.recepie_image = recepie_image
+
+        queryset.save()
+        return redirect('/viewRecepies')
 
     return render(request, 'update-rec.html', context)

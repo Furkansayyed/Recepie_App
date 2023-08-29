@@ -10,6 +10,7 @@ urlpatterns = [
     path('contact', views.contact, name="contactus"),
     path('viewRecepies', views.view_rec, name="view_recepies"),
     path('deleteRecepies/<id>/', views.delete_rec, name="delete_recepies"),
+    path('updateRecepies/<id>/', views.update_red, name="update_recepies"),
     path('aboutus', views.aboutus, name="abouutus")
 ]
 
