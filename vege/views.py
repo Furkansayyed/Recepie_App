@@ -30,3 +30,9 @@ def delete_rec(request, id):
     query = RecpieUpload.objects.get(id=id)
     query.delete()
     return redirect('/viewRecepies')
+
+def update_red(request, id):
+    queryset = RecpieUpload.objects.get(id=id)
+    context = {'dishes': queryset}
+
+    return render(request, 'update-rec.html', context)
