@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def registerUsers(request):
@@ -61,7 +62,7 @@ def logoutUsers(request):
     return redirect('/login')
 
 
-
+@login_required(login_url='/login')
 def index(request):
     if request.method == 'POST':
         data = request.POST

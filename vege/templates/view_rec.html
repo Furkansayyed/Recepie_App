@@ -5,11 +5,11 @@ Your Added Recepies
 {% endblock title %}
 
 
-{% block button %}  
+{% block button %}
 <form class="d-flex" role="search">
-    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-  </form>
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+  <button class="btn btn-outline-success mx-2" type="submit">Search</button>
+</form>
 {% endblock button %}
 
 
@@ -17,12 +17,12 @@ Your Added Recepies
 
 {% if messages %}
 {% for message in messages %}
-      <div class="alert alert-{{ message.tags }}  alert-dismissible fade show my-0" role="alert">
-        {{message}}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-      {% endfor %}
-      {% endif %}
+<div class="alert alert-{{ message.tags }}  alert-dismissible fade show my-0" role="alert">
+  {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
 
 <br>
 <h2 align=center>Your Added Recepies 😋</h2>
@@ -42,17 +42,20 @@ Your Added Recepies
     </thead>
     <tbody>
       <tr>
-        
-        
-        
+
+
+
         {% for dish in dishes %}
         <th scope="row">{{forloop.counter}}</th>
         <td>{{dish.title}}</td>
         <td>{{dish.description}}</td>
         <td> <img src="/media/{{dish.recepie_image}}" alt="{{dish.title}}" height="200" width="260"></td>
         <td>
-          <a href="updateRecepies/{{dish.id}}/"><i class="bi bi-pencil-square mx-3" style="font-size: xx-large;color: green;" data-toggle="tooltip" data-placement="left" title="Edit Recepie"></i></a>
-          <a href="deleteRecepies/{{dish.id}}/"><i class="bi bi-trash3-fill" style="font-size: xx-large;color: red;" data-toggle="tooltip" data-placement="left" title="Delete Recepie"></i></a>
+          <a href="updateRecepies/{{dish.id}}/"><i class="bi bi-pencil-square mx-3"
+              style="font-size: xx-large;color: green;" data-toggle="tooltip" data-placement="left"
+              title="Edit Recepie"></i></a>
+          <a href="deleteRecepies/{{dish.id}}/"><i class="bi bi-trash3-fill" style="font-size: xx-large;color: red;"
+              data-toggle="tooltip" data-placement="left" title="Delete Recepie"></i></a>
         </td>
       </tr>
       {% endfor %}
@@ -60,9 +63,9 @@ Your Added Recepies
       {% else %}
       <h2 align="center">No Recepies Added 😯</h2>
 
-        {% endif %}
+      {% endif %}
 
-  
+
     </tbody>
   </table>
 </div>
@@ -72,7 +75,7 @@ Your Added Recepies
 
   var element = document.getElementsByTagName("a");
   for (const ele of element) {
-      ele.classList.remove("active");
+    ele.classList.remove("active");
   }
 
   let el = document.getElementById("view");;
