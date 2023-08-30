@@ -2,7 +2,41 @@ from django.shortcuts import render, HttpResponse, redirect
 from .models import *
 from django.contrib import messages
 from django.contrib import messages
+from django.contrib.auth.models import User
 # Create your views here.
+
+def registerUsers(request):
+
+    if request.method == 'POST':
+        firstName = request.POST.get('fname')
+        LastName = request.POST.get('lname')
+        username = request.POST.get('username')
+        password = request.POST.get('passwd')
+
+        user = User.objects.filter(username = username)
+
+        if user.exists():
+            messages.error(request, "Username not available")
+            return redirect('/register')
+            # return redirect(request, '/register')
+
+        user = User.objects.create(
+            first_name = firstName,
+            last_name = LastName,
+            username = username
+        )
+
+        user.set_password(password)
+        user.save()
+        messages.success(request, "Account Created Successfully....")
+
+        return redirect('/register')
+
+    return render(request, 'register.html')
+
+def loginUsers(request):
+    return render(request, 'login.html')
+
 
 def index(request):
     if request.method == 'POST':

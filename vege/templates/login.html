@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block base %}
+
+<div class="container mt-5">
+    <form class="col-6 mx-auto card p-3 shadow-lg" method="POST" enctype="multipart/form-data">
+        <h2>Login</h2>
+        <hr>
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" name="mytitle" required>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Last Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" name="mytitle" required>
+        </div>
+        
+        <p>Don't Have Account <a href="/register">Register</a></p>
+        <button type="submit" class="btn btn-success mx-5 px-2">Register</button>
+      </form>
+</div>
+
+{% endblock base %}
+
