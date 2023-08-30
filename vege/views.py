@@ -3,6 +3,7 @@ from .models import *
 from django.contrib import messages
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
 def registerUsers(request):
@@ -35,7 +36,30 @@ def registerUsers(request):
     return render(request, 'register.html')
 
 def loginUsers(request):
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('passwd')
+
+        if not User.objects.filter(username = username).exists():
+            messages.error(request, "Invalid Username..")
+            return redirect('/login')
+        
+        user = authenticate(username=username, password=password)
+
+        if user is None:
+            messages.error(request, 'Invalid Password')
+            return redirect('/login')
+        else:
+            login(request, user)
+            return redirect('/')
+
     return render(request, 'login.html')
+
+def logoutUsers(request):
+    logout(request)
+    return redirect('/login')
+
 
 
 def index(request):
