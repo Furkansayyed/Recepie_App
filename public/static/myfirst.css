@@ -1,5 +1,3 @@
-
-
 .alert-error {
     color: #fff;
     background-color: #dc3545;
@@ -10,4 +8,12 @@
     color: #fff;
     background-color: #c82333;
     border-color: #bd2130;
+}
+
+.active {
+    font-weight: bolder;
+}
+
+.navbar-nav .nav-link.active {
+    font-weight: bolder;
 }
