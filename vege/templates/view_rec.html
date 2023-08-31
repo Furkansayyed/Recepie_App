@@ -37,23 +37,61 @@ Your Added Recepies
         <th scope="col">Recepie Title</th>
         <th scope="col">Recepie Desciption</th>
         <th scope="col">Recepie Image</th>
-        <th scope="col">Delete</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr>
 
-
-
         {% for dish in dishes %}
+
+        <!-- Button trigger modal -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="modal-{{dish.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Recepie</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form class="col-6 mx-auto px-3 shadow-lg" method="POST" enctype="multipart/form-data"
+                  action="updateRecepies/{{dish.id}}/">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Recepie Title</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="mytitle" required
+                      value="{{dish.title}}">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Description</label>
+                    <textarea class="form-control" id="exampleInputPassword1" name='desc'
+                      required>{{dish.description}}</textarea>
+                  </div>
+                  <div class="mb-3">
+                    <input type="file" name="recepie_image" id="image">
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
         <th scope="row">{{forloop.counter}}</th>
         <td>{{dish.title}}</td>
         <td>{{dish.description}}</td>
-        <td> <img src="/media/{{dish.recepie_image}}" alt="{{dish.title}}" height="200" width="260"></td>
+        <td> <img src="/media/{{dish.recepie_image}}" alt="{{dish.title}}" class="img-thumbnail rounded"></td>
         <td>
-          <a href="updateRecepies/{{dish.id}}/"><i class="bi bi-pencil-square mx-3"
-              style="font-size: xx-large;color: green;" data-toggle="tooltip" data-placement="left"
-              title="Edit Recepie"></i></a>
+          <a href="/updateRecepies/{{dish.id}}" data-bs-toggle="modal" data-bs-target="#modal-{{dish.id}}"><i
+              class="bi bi-pencil-square mx-3" style="font-size: xx-large;color: green;" data-toggle="tooltip"
+              data-placement="left" title="Edit Recepie"></i></a>
           <a href="deleteRecepies/{{dish.id}}/"><i class="bi bi-trash3-fill" style="font-size: xx-large;color: red;"
               data-toggle="tooltip" data-placement="left" title="Delete Recepie"></i></a>
         </td>
@@ -61,7 +99,7 @@ Your Added Recepies
       {% endfor %}
 
       {% else %}
-      <h2 align="center">No Recepies Added 😯</h2>
+      <h2 align="center">No Recepies Found 😯</h2>
 
       {% endif %}
 

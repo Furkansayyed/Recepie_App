@@ -8,5 +8,15 @@ About Us Page
 
 <h2>Welcome to About Us Page in Django...</h2>
 
-{% endblock base %} 
+<script>
 
+    var element = document.getElementsByTagName("a");
+    for (const ele of element) {
+        ele.classList.remove("active");
+    }
+
+    let el = document.getElementById("about");;
+    el.classList.add("active")
+
+</script>
+{% endblock base %}
