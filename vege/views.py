@@ -48,7 +48,7 @@ def update_red(request, id):
     if request.method == 'POST':
         data = request.POST
         title = data['mytitle']
-        desc = data['desc']
+        desc = data['desc'] 
         recepie_image = request.FILES.get('recepie_image')
         
         queryset.title = title
