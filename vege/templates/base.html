@@ -45,9 +45,9 @@
         {% block button %}{% endblock button %}
         {% if request.user.is_authenticated %}
         <p>Hello {{request.user.first_name}}</p>
-        <a class="btn btn-success" href="/logout">Logout</a>
+        <a class="btn btn-success" href="/accounts/logout">Logout</a>
         {% else %}
-        <a class="btn btn-success" href="/login">Login</a>
+        <a class="btn btn-success" href="/accounts/login">Login</a>
         {% endif %}
 
       </div>

@@ -12,9 +12,6 @@ urlpatterns = [
     path('deleteRecepies/<id>/', views.delete_rec, name="delete_recepies"),
     path('updateRecepies/<id>/', views.update_red, name="update_recepies"),
     path('aboutus', views.aboutus, name="abouutus"),
-    path('register', views.registerUsers, name="RegisterUsers"),
-    path('login', views.loginUsers, name="loginUsers"),
-    path('logout', views.logoutUsers, name="logoutUsers"),
 ]
 
 admin.site.site_header = "Recepie App Admin"
